@@ -1,0 +1,79 @@
+{% extends "nav.html" %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Dashboard</title>
+</head>
+<body class="bg-gray-300">
+
+
+
+      {% if messages %}
+        <div class="max-w-4xl mx-auto py-8">
+          <div class="bg-green-500 p-4 text-white text-center">
+            {% for message in messages %}
+              <p>{{ message }}</p>
+            {% endfor %}
+          </div>
+        </div>
+      {% endif %}
+
+      <div class="max-w-4xl mx-auto py-8">
+        <h2 class="text-2xl font-bold mb-8 text-center">Upload Product</h2>
+        <form method="post" enctype="multipart/form-data" class="grid grid-cols-2 gap-6">
+            {% csrf_token %}
+            <div class="col-span-1">
+                <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
+                <input type="text" name="name" id="name" class="mt-1 p-2 w-full border-red-900 rounded-md" required>
+            </div>
+            <div class="col-span-1">
+                <label for="price" class="block text-sm font-medium text-gray-700">Price ($) </label>
+                <input type="number" name="price" id="price" class="mt-1 p-2 w-full border-gray-300 rounded-md" required>
+            </div>
+            <div class="col-span-2">
+                <label for="description" class="block text-sm font-medium text-gray-700">Description</label>
+                <textarea name="description" id="description" rows="3" class="mt-1 p-2 w-full border-gray-300 rounded-md" required></textarea>
+            </div>
+            <div class="col-span-1">
+                <label for="image" class="block text-sm font-medium text-gray-700">Image</label>
+                <input type="file" name="image" id="image" class="mt-1 p-2 w-full border-gray-300 rounded-md" required>
+            </div>
+            <div class="col-span-1">
+                <label for="category" class="block text-sm font-medium text-gray-700">Category</label>
+                <input type="text" name="category" id="category" class="mt-1 p-2 w-full border-gray-300 rounded-md" required>
+            </div>
+            <div class="col-span-1">
+                <label for="rating" class="block text-sm font-medium text-gray-700">Rating</label>
+                <input type="number" name="rating" id="rating" class="mt-1 p-2 w-full border-gray-300 rounded-md" required>
+            </div>
+            <div class="col-span-1">
+                <label for="stock" class="block text-sm font-medium text-gray-700">Stock</label>
+                <input type="number" name="stock" id="stock" class="mt-1 p-2 w-full border-gray-300 rounded-md" required>
+            </div>
+            <div class="col-span-2 flex items-center">
+                <input type="checkbox" name="available" id="available" class="mr-2">
+                <label for="available" class="text-sm font-medium text-gray-700">Available</label>
+            </div>
+            <div class="col-span-1">
+                <label for="brand" class="block text-sm font-medium text-gray-700">Brand</label>
+                <input type="text" name="brand" id="brand" class="mt-1 p-2 w-full border-gray-300 rounded-md">
+            </div>
+            <div class="col-span-1">
+                <label for="size" class="block text-sm font-medium text-gray-700">Size (Max)</label>
+                <input type="text" name="size" id="size" class="mt-1 p-2 w-full border-gray-300 rounded-md">
+            </div>
+            <div class="col-span-2" style="text-align: center;">
+                <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-24 rounded" style="display: inline-block;">Upload</button>
+            </div>
+        </form>
+    </div>
+    
+    
+    {% endblock %}
+</body>
+</html>
